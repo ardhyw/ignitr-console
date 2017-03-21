@@ -18,10 +18,13 @@ class EditableLabel(Label):
         return super(EditableLabel, self).on_touch_down(touch)
 
     def on_edit(self, instance, value):
+        #print locals()
         if not value:
             if self.textinput:
                 self.remove_widget(self.textinput)
             return
+
+        # buat text input ketika label di klik
         self.textinput = t = TextInput(
                 text=self.text, size_hint=(None, None),
                 font_size=self.font_size, font_name=self.font_name,
@@ -31,10 +34,18 @@ class EditableLabel(Label):
         t.bind(on_text_validate=self.on_text_validate, focus=self.on_text_focus)
 
     def on_text_validate(self, instance):
+
+        # kalau dikosongin, kasih nilai default = 0
+        if not instance.text:
+            instance.text = "0"
+
         self.text = instance.text
         self.edit = False
 
     def on_text_focus(self, instance, focus):
         if focus is False:
+            if not instance.text:
+                instance.text = "0"
+
             self.text = instance.text
             self.edit = False
