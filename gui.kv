@@ -1,0 +1,89 @@
+# vim: set foldmarker={,} foldlevel=0:
+
+<TimingTable@GridLayout>:
+    spacing: 2
+
+<Gauge@BoxLayout>:
+    padding: 5
+    orientation: 'vertical'
+
+<GaugeLabel@Label>:
+    size_hint_y: None
+    height: '32sp'
+    font_size: '16sp'
+
+<GaugeValue@Label>:
+    size_hint_y: None
+    height: '64sp'
+    font_size: '64sp'
+
+<RootWidget>:
+    spacing: 10
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint_y: None
+        height: '32sp'
+        Button:
+            text: 'Dashboard'
+            size_hint_y: None
+            height: '32sp'
+            on_release: sm.current = 'dashboard'
+        Button:
+            text: 'Settings'
+            size_hint_y: None
+            height: '32sp'
+            on_release: sm.current = 'settings'
+
+    ScreenManager:
+        id: sm
+        # dashboard screen {
+        Screen:
+            name: 'dashboard'
+            BoxLayout:
+                spacing: 30
+                orientation: 'vertical'
+                GridLayout:
+                    rows: 2
+                    spacing: 10
+                    # RPM
+                    Gauge:
+                        GaugeValue:
+                            text: '12345'
+                            id: rpm
+                        GaugeLabel:
+                            text: 'RPM'
+                    # Advance
+                    Gauge:
+                        GaugeValue:
+                            text: '22°'
+                            id: adv
+                        GaugeLabel:
+                            text: 'Advance'
+                    # Temp
+                    Gauge:
+                        GaugeValue:
+                            text: '90°'
+                            id: clt
+                        GaugeLabel:
+                            text: 'Temp'
+                    # Batt
+                    Gauge:
+                        GaugeValue:
+                            text: '14'
+                            id: bat
+                        GaugeLabel:
+                            text: 'Battery'
+                    # MAP
+                    Gauge:
+                        GaugeValue:
+                            text: '2'
+                            id: map
+                        GaugeLabel:
+                            text: 'MAP'
+                # }
+                TimingTable:
+
+        Screen:
+            name: 'settings'
+            Label:
+                text: 'Settings'
