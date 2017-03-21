@@ -14,12 +14,12 @@ class TimingTable(GridLayout):
         kw['cols'] = maxx
         super(TimingTable, self).__init__(**kw)
 
-        self.add_widget(Label(text='Table'))
+        self.add_widget(Label(text='Bar \ RPM'))
         for x in xrange(maxx-1):
-            self.add_widget(Label(text='RPM'))
+            self.add_widget(EditableLabel(text='RPM'))
 
         for y in xrange(maxy-1):
-            self.add_widget(Label(text='Load'))
+            self.add_widget(EditableLabel(text='Load'))
 
             for x in xrange(maxx-1):
                 t = str(x), str(y)
